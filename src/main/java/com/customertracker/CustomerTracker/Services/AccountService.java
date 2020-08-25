@@ -5,9 +5,12 @@ import com.customertracker.CustomerTracker.Models.Account;
 import com.customertracker.CustomerTracker.Repositories.AccountRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AccountService implements AccountDao {
   @Autowired
   private AccountRepository accountRepository;
@@ -42,7 +45,7 @@ public class AccountService implements AccountDao {
     try{
       accountRepository.deleteById(id);
       return 1;
-    }catch (IllegalArgumentException e) {
+    }catch (EmptyResultDataAccessException e) {
       return 0;
     }
   }

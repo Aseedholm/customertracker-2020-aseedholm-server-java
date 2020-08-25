@@ -5,10 +5,13 @@ import com.customertracker.CustomerTracker.Models.Customer;
 import com.customertracker.CustomerTracker.Repositories.CustomerRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class CustomerService implements CustomerDao {
   List<Customer> customerList = new ArrayList<Customer>();
 
@@ -39,7 +42,7 @@ public class CustomerService implements CustomerDao {
     try{
       customerRepository.deleteById(id);
       return 1;
-    }catch (IllegalArgumentException e) {
+    }catch (EmptyResultDataAccessException e) {
       return 0;
     }
   }

@@ -1,5 +1,7 @@
 package com.customertracker.CustomerTracker.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,7 @@ public class Customer {
   private Date date;
 
   @OneToMany(mappedBy = "customer")
+  @JsonIgnore
   private List<Account> account;
 
   /**
