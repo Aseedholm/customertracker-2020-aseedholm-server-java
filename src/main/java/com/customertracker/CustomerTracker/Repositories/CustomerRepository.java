@@ -4,6 +4,7 @@ import com.customertracker.CustomerTracker.Models.Customer;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -13,5 +14,10 @@ import java.util.List;
  */
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
+  @Query("SELECT customer FROM Customer customer")
+  List<Customer> findAllCustomers();
+
+  @Query("SELECT customer FROM Customer customer where customer.id=:cid")
+  Customer findCustomerById(@Param("cid") Integer cid);
 
 }
