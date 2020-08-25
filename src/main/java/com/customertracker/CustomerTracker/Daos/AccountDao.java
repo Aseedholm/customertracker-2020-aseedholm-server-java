@@ -41,7 +41,7 @@ public interface AccountDao {
    * @param cid an Integer representing the ID of a Customer.
    * @return a list of Account objects belonging to the Customer.
    */
-  List<Account> findAccountByCustomerId(Integer cid);
+  List<Account> findAccountsByCustomerId(Integer cid);
 
   /**
    * This method updates a Account's information stored in the database, if the passed Account is
