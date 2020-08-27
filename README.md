@@ -1,16 +1,25 @@
-﻿# Customer-Tracker!
-
+﻿# Customer-Tracker Backend!
+-----
 Spring Initializer used to create project (https://start.spring.io/).
 
 Project - Maven Project
+
 Language - Java
+
 Spring Boot - 2.3.3
- Packagin - Jar
+
+Packaging - Jar
+
 Java - 11
 
+---
 Dependencies
-Spring Web
-JDBC API
-Spring Data JPA
-MySQL Driver 
+
+-Spring Web
+
+-JDBC API
+
+-Spring Data JPA
+
+-MySQL Driver 
 
