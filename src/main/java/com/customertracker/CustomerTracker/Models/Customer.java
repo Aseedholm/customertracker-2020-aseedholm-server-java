@@ -1,16 +1,11 @@
 package com.customertracker.CustomerTracker.Models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -66,10 +61,9 @@ public class Customer {
    * @param reasonForJoining a String providing the reason for the customer joining Solstice.
    * @param date             a MySQL data object representing the date and time the customer created
    *                         their account.
-   * @param account          a list of Account object representing the account the Customer has.
    */
   public Customer(String firstName, String lastName, String email, String active,
-                  Integer accountManagerId, String reasonForJoining, String date, List<Account> account) {
+                  Integer accountManagerId, String reasonForJoining, String date) {
     this.first_name = firstName;
     this.last_name = lastName;
     this.email = email;
@@ -155,8 +149,8 @@ public class Customer {
   /**
    * This method returns the Customer object's active status.
    *
-   * @return a boolean representing the Customer's status of having an active or inactive account.
-   *         True will be returned for active and false for inactive.
+   * @return a String representing the Customer's status of having an active or inactive account.
+   * 1 for active and 0 for inactive.
    */
   public String getActive() {
     return active;
@@ -165,7 +159,7 @@ public class Customer {
   /**
    * This method sets the Customer object's active status according to the provided parameter.
    *
-   * @param active a boolean representing the Customer's status if they have an active account or
+   * @param active a String representing the Customer's status if they have an active account or
    *               not.
    */
   public void setActive(String active) {
@@ -211,19 +205,19 @@ public class Customer {
   }
 
   /**
-   * This method returns the Customer object's date/time they created their account.
+   * This method returns the Customer object's date they created their account.
    *
-   * @return a SQL date object representing the date/time the Customer created their account.
+   * @return a String representing the date the Customer created their account.
    */
   public String getDate() {
     return date;
   }
 
   /**
-   * This method sets the Customer object's date/time they created their account according to the
+   * This method sets the Customer object's date they created their account according to the
    * provided parameter.
    *
-   * @param date a SQL date object representing the date/time the Customer created their account.
+   * @param date a SQL date object representing the date the Customer created their account.
    */
   public void setDate(String date) {
     this.date = date;

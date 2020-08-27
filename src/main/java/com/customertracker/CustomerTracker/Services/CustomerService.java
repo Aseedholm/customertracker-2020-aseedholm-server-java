@@ -11,9 +11,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents the services for the Customer model. It allows the creation, deletion, and
+ * reading of Customer object information from the database or to the database.
+ */
 @Service
 public class CustomerService implements CustomerDao {
-  List<Customer> customerList = new ArrayList<Customer>();
 
   @Autowired
   private CustomerRepository customerRepository;
@@ -32,10 +35,6 @@ public class CustomerService implements CustomerDao {
     return customerRepository.findCustomerById(id);
   }
 
-  @Override
-  public Customer updateCustomer(Customer customer) {
-    return customerRepository.save(customer);
-  }
 
   @Override
   public int deleteCustomer(Integer id) {
@@ -47,10 +46,12 @@ public class CustomerService implements CustomerDao {
     }
   }
 
-  public Iterable<Customer> list() {
-    return customerRepository.findAll();
-  }
-
+  /**
+   * This method saves a passed list of Customer objects to the database.
+   *
+   * @param customers a List of Customer objects that will be saved in the database.
+   * @return an Iterable<Customer> object.
+   */
   public Iterable<Customer> save(List<Customer> customers) {
     return customerRepository.saveAll(customers);
   }

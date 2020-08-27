@@ -1,7 +1,5 @@
 package com.customertracker.CustomerTracker.Models;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * This class represents a Customer's account.
+ * This class models a Customer's account.
  */
 @Entity
 @Table(name = "accounts")
@@ -39,7 +37,6 @@ public class Account {
    * empty account.
    */
   public Account() {
-//    this.customer = new Customer();
     this.customer_id = null;
     this.address = null;
     this.city = null;
@@ -54,8 +51,8 @@ public class Account {
    * Constructor constructs an Account object and initializes all class variables according to the
    * passed in parameters.
    *
-   * @param customer a Customer object representing the customer who owns the constructed Account
-   *                 object.
+   * @param customerId an Integer representing the customer identification number for the customer who
+   *                owns the constructed Account object.
    * @param address a String representing the address of the associated Account object.
    * @param city a String representing the city of the associated Account object.
    * @param state a String representing the state of the associated Account object.
@@ -64,11 +61,11 @@ public class Account {
    *                    object.
    * @param capacityShare a double representing the capacity return from the associated solar farm
    *                      for the Account object.
-   * @param createdDate a SQL date object representing the date the Account was created.
+   * @param createdDate a String representing the date the Account was created.
    */
-  public Account(Integer customer, String address, String city, String state, Integer zipCode,
+  public Account(Integer customerId, String address, String city, String state, Integer zipCode,
                  Integer solarFarmId, double capacityShare, String createdDate) {
-    this.customer_id = customer;
+    this.customer_id = customerId;
     this.address = address;
     this.city = city;
     this.state = state;
@@ -98,21 +95,22 @@ public class Account {
   }
 
   /**
-   * This method returns the Account object's associated Customer object.
+   * This method returns the Account object's customer identification number.
    *
-   * @return a Customer object that owns the Account.
+   * @return an Integer representing the Customer's identification number.
    */
   public Integer getCustomer_id() {
     return customer_id;
   }
 
   /**
-   * This method sets the Account object's customer variable according to the passed parameter.
+   * This method sets the Account object's customer identification number according to the passed
+   * parameter.
    *
-   * @param customer a Customer object that owns the Account.
+   * @param customerId an Integer representing the Customer's identification number.
    */
-  public void setCustomer_id(Integer customer) {
-    this.customer_id = customer;
+  public void setCustomer_id(Integer customerId) {
+    this.customer_id = customerId;
   }
 
   /**
@@ -226,7 +224,7 @@ public class Account {
   /**
    * This method returns the Account object's creation date.
    *
-   * @return a SQL Date object that represents the Account's date of creation.
+   * @return a String that represents the Account's date of creation.
    */
   public String getCreated_date() {
     return created_date;
@@ -235,7 +233,7 @@ public class Account {
   /**
    * This method sets the Account object's created date variable according to the passed parameter.
    *
-   * @param created_date a SQL date object.
+   * @param created_date a String that represents the Account's date of creation.
    */
   public void setCreated_date(String created_date) {
     this.created_date = created_date;
