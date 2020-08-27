@@ -20,7 +20,7 @@ public interface AccountRepository extends CrudRepository<Account, Integer> {
    * @param cid an Integer representing the Customer's ID.
    * @return a list of all accounts for the Customer.
    */
-  @Query("SELECT account FROM Account account WHERE account.customer.id=:cid")
+  @Query("SELECT account FROM Account account WHERE account.customer_id=:cid")
   List<Account> findAccountsByCustomerId(@Param("cid") Integer cid);
 
   @Query("SELECT account FROM Account account")

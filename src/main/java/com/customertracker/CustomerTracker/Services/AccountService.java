@@ -49,4 +49,12 @@ public class AccountService implements AccountDao {
       return 0;
     }
   }
+
+  public Iterable<Account> list() {
+    return accountRepository.findAll();
+  }
+
+  public Iterable<Account> save(List<Account> accounts) {
+    return accountRepository.saveAll(accounts);
+  }
 }

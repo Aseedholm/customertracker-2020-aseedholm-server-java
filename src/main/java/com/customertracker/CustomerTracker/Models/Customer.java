@@ -2,17 +2,15 @@ package com.customertracker.CustomerTracker.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,37 +24,32 @@ public class Customer {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  private String firstName;
+  private String first_name;
 
-  private String lastName;
+  private String last_name;
 
   private String email;
 
-  private boolean active;
+  private String active;
 
-  private Integer accountManagerId;
+  private Integer account_manager_id;
 
-  private String reasonForJoining;
+  private String reason_for_joining;
 
-  private Date date;
-
-  @OneToMany(mappedBy = "customer")
-  @JsonIgnore
-  private List<Account> account;
+  private String date;
 
   /**
    * Constructor constructs a Customer object will all null or -1 values representing an empty
    * Customer object.
    */
   public Customer() {
-    this.firstName = null;
-    this.lastName = null;
+    this.first_name = null;
+    this.last_name = null;
     this.email = null;
-    this.active = false;
-    this.accountManagerId = null;
-    this.reasonForJoining = null;
+    this.active = null;
+    this.account_manager_id = null;
+    this.reason_for_joining = null;
     this.date = null;
-    this.account = new ArrayList<Account>();
   }
 
   /**
@@ -75,16 +68,15 @@ public class Customer {
    *                         their account.
    * @param account          a list of Account object representing the account the Customer has.
    */
-  public Customer(String firstName, String lastName, String email, boolean active,
-                  Integer accountManagerId, String reasonForJoining, Date date, List<Account> account) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+  public Customer(String firstName, String lastName, String email, String active,
+                  Integer accountManagerId, String reasonForJoining, String date, List<Account> account) {
+    this.first_name = firstName;
+    this.last_name = lastName;
     this.email = email;
     this.active = active;
-    this.accountManagerId = accountManagerId;
-    this.reasonForJoining = reasonForJoining;
+    this.account_manager_id = accountManagerId;
+    this.reason_for_joining = reasonForJoining;
     this.date = date;
-    this.account = account;
   }
 
   /**
@@ -111,17 +103,17 @@ public class Customer {
    *
    * @return a String representing the Customer's first name.
    */
-  public String getFirstName() {
-    return firstName;
+  public String getFirst_name() {
+    return first_name;
   }
 
   /**
    * This method sets the Customer object's first name according to the provided parameter.
    *
-   * @param firstName a String representing the Customer's first name.
+   * @param first_name a String representing the Customer's first name.
    */
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
+  public void setFirst_name(String first_name) {
+    this.first_name = first_name;
   }
 
   /**
@@ -129,17 +121,17 @@ public class Customer {
    *
    * @return a String representing the Customer's last name.
    */
-  public String getLastName() {
-    return lastName;
+  public String getLast_name() {
+    return last_name;
   }
 
   /**
    * This method sets the Customer object's last name according to the provided parameter.
    *
-   * @param lastName a String representing the Customer's last name.
+   * @param last_name a String representing the Customer's last name.
    */
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
+  public void setLast_name(String last_name) {
+    this.last_name = last_name;
   }
 
   /**
@@ -166,7 +158,7 @@ public class Customer {
    * @return a boolean representing the Customer's status of having an active or inactive account.
    *         True will be returned for active and false for inactive.
    */
-  public boolean isActive() {
+  public String getActive() {
     return active;
   }
 
@@ -176,7 +168,7 @@ public class Customer {
    * @param active a boolean representing the Customer's status if they have an active account or
    *               not.
    */
-  public void setActive(boolean active) {
+  public void setActive(String active) {
     this.active = active;
   }
 
@@ -186,17 +178,17 @@ public class Customer {
    * @return an Integer representing the ID of the Account Manager who manages the Customer's
    *         account.
    */
-  public Integer getAccountManagerId() {
-    return accountManagerId;
+  public Integer getAccount_manager_id() {
+    return account_manager_id;
   }
 
   /**
    * This method sets the Customer object's account manager ID according to the provided parameter.
    *
-   * @param accountManagerId an Integer representing the Customer's account manager's ID.
+   * @param account_manager_id an Integer representing the Customer's account manager's ID.
    */
-  public void setAccountManagerId(Integer accountManagerId) {
-    this.accountManagerId = accountManagerId;
+  public void setAccount_manager_id(Integer account_manager_id) {
+    this.account_manager_id = account_manager_id;
   }
 
   /**
@@ -204,18 +196,18 @@ public class Customer {
    *
    * @return a String representing the Customer's reason for joining Solstice.
    */
-  public String getReasonForJoining() {
-    return reasonForJoining;
+  public String getReason_for_joining() {
+    return reason_for_joining;
   }
 
   /**
    * This method sets the Customer object's reason for joining according to the provided parameter.
    *
-   * @param reasonForJoining a String representing the Customer's reason for signing up with
+   * @param reason_for_joining a String representing the Customer's reason for signing up with
    *                         Solstice.
    */
-  public void setReasonForJoining(String reasonForJoining) {
-    this.reasonForJoining = reasonForJoining;
+  public void setReason_for_joining(String reason_for_joining) {
+    this.reason_for_joining = reason_for_joining;
   }
 
   /**
@@ -223,7 +215,7 @@ public class Customer {
    *
    * @return a SQL date object representing the date/time the Customer created their account.
    */
-  public Date getDate() {
+  public String getDate() {
     return date;
   }
 
@@ -233,25 +225,8 @@ public class Customer {
    *
    * @param date a SQL date object representing the date/time the Customer created their account.
    */
-  public void setDate(Date date) {
+  public void setDate(String date) {
     this.date = date;
   }
 
-  /**
-   * This method returns the Customer object's associated account object.
-   *
-   * @return an Account object representing the Customer's account information.
-   */
-  public List<Account> getAccount() {
-    return account;
-  }
-
-  /**
-   * This method sets the Customer object's Account object.
-   *
-   * @param account an Account object representing the Customer's account information.
-   */
-  public void setAccount(List<Account> account) {
-    this.account = account;
-  }
 }
