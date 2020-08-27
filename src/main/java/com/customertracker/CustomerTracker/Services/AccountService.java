@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * This class represents the services for the Account model. It allows the creation, deletion, and
+ * reading of Account object information from the database or to the database.
+ */
 @Service
 public class AccountService implements AccountDao {
   @Autowired
@@ -36,11 +40,6 @@ public class AccountService implements AccountDao {
   }
 
   @Override
-  public Account updateAccount(Account account) {
-    return accountRepository.save(account);
-  }
-
-  @Override
   public int deleteAccount(Integer id) {
     try{
       accountRepository.deleteById(id);
@@ -50,10 +49,12 @@ public class AccountService implements AccountDao {
     }
   }
 
-  public Iterable<Account> list() {
-    return accountRepository.findAll();
-  }
-
+  /**
+   * This method saves a passed list of Account objects to the database.
+   *
+   * @param accounts a List of Account objects that will be saved in the database.
+   * @return an Iterable<Account> object.
+   */
   public Iterable<Account> save(List<Account> accounts) {
     return accountRepository.saveAll(accounts);
   }

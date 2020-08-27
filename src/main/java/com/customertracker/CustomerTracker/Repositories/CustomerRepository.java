@@ -14,9 +14,20 @@ import java.util.List;
  */
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
+  /**
+   * This method returns all Customers stored in the database.
+   *
+   * @return a list of all Customers.
+   */
   @Query("SELECT customer FROM Customer customer")
   List<Customer> findAllCustomers();
 
+  /**
+   * This method returns a customer object according to the customer's identification number..
+   *
+   * @param cid an Integer representing the customer's identification number.
+   * @return a Customer object.
+   */
   @Query("SELECT customer FROM Customer customer where customer.id=:cid")
   Customer findCustomerById(@Param("cid") Integer cid);
 
