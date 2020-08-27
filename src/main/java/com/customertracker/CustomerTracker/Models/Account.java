@@ -3,13 +3,9 @@ package com.customertracker.CustomerTracker.Models;
 import java.sql.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,8 +18,7 @@ public class Account {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @ManyToOne
-  private Customer customer;
+  private Integer customer_id;
 
   private String address;
 
@@ -31,27 +26,28 @@ public class Account {
 
   private String state;
 
-  private Integer zipCode;
+  private Integer zip_code;
 
-  private Integer solarFarmId;
+  private Integer solar_farm_id;
 
-  private double capacityShare;
+  private double capacity_share;
 
-  private Date createdDate;
+  private String created_date;
 
   /**
    * Constructor constructs an Account object with all null or negative values representing an
    * empty account.
    */
   public Account() {
-    this.customer = new Customer();
+//    this.customer = new Customer();
+    this.customer_id = null;
     this.address = null;
     this.city = null;
     this.state = null;
-    this.zipCode = null;
-    this.solarFarmId = null;
-    this.capacityShare = -.01;
-    this.createdDate = null;
+    this.zip_code = null;
+    this.solar_farm_id = null;
+    this.capacity_share = -.01;
+    this.created_date = null;
   }
 
   /**
@@ -70,16 +66,16 @@ public class Account {
    *                      for the Account object.
    * @param createdDate a SQL date object representing the date the Account was created.
    */
-  public Account(Customer customer, String address, String city, String state, Integer zipCode,
-                 Integer solarFarmId, double capacityShare, Date createdDate) {
-    this.customer = customer;
+  public Account(Integer customer, String address, String city, String state, Integer zipCode,
+                 Integer solarFarmId, double capacityShare, String createdDate) {
+    this.customer_id = customer;
     this.address = address;
     this.city = city;
     this.state = state;
-    this.zipCode = zipCode;
-    this.solarFarmId = solarFarmId;
-    this.capacityShare = capacityShare;
-    this.createdDate = createdDate;
+    this.zip_code = zipCode;
+    this.solar_farm_id = solarFarmId;
+    this.capacity_share = capacityShare;
+    this.created_date = createdDate;
   }
 
   /**
@@ -106,8 +102,8 @@ public class Account {
    *
    * @return a Customer object that owns the Account.
    */
-  public Customer getCustomer() {
-    return customer;
+  public Integer getCustomer_id() {
+    return customer_id;
   }
 
   /**
@@ -115,8 +111,8 @@ public class Account {
    *
    * @param customer a Customer object that owns the Account.
    */
-  public void setCustomer(Customer customer) {
-    this.customer = customer;
+  public void setCustomer_id(Integer customer) {
+    this.customer_id = customer;
   }
 
   /**
@@ -178,17 +174,17 @@ public class Account {
    *
    * @return a String that represents the zip code the account is located in.
    */
-  public Integer getZipCode() {
-    return zipCode;
+  public Integer getZip_code() {
+    return zip_code;
   }
 
   /**
    * This method sets the Account object's zip code variable according to the passed parameter.
    *
-   * @param zipCode an Integer that represents the account's zip code.
+   * @param zip_code an Integer that represents the account's zip code.
    */
-  public void setZipCode(Integer zipCode) {
-    this.zipCode = zipCode;
+  public void setZip_code(Integer zip_code) {
+    this.zip_code = zip_code;
   }
 
   /**
@@ -196,17 +192,17 @@ public class Account {
    *
    * @return an Integer that represents the Account's associated solar-farm-id
    */
-  public Integer getSolarFarmId() {
-    return solarFarmId;
+  public Integer getSolar_farm_id() {
+    return solar_farm_id;
   }
 
   /**
    * This method sets the Account object's solar-farm-id variable according to the passed parameter.
    *
-   * @param solarFarmId an Integer that represents the Account's associated solar-farm-id.
+   * @param solar_farm_id an Integer that represents the Account's associated solar-farm-id.
    */
-  public void setSolarFarmId(Integer solarFarmId) {
-    this.solarFarmId = solarFarmId;
+  public void setSolar_farm_id(Integer solar_farm_id) {
+    this.solar_farm_id = solar_farm_id;
   }
 
   /**
@@ -214,17 +210,17 @@ public class Account {
    *
    * @return a double that represents the Account's capacity share.
    */
-  public double getCapacityShare() {
-    return capacityShare;
+  public double getCapacity_share() {
+    return capacity_share;
   }
 
   /**
    * This method sets the Account object's capacity share variable according to the passed parameter.
    *
-   * @param capacityShare a double that represents the Account's capacity share.
+   * @param capacity_share a double that represents the Account's capacity share.
    */
-  public void setCapacityShare(double capacityShare) {
-    this.capacityShare = capacityShare;
+  public void setCapacity_share(double capacity_share) {
+    this.capacity_share = capacity_share;
   }
 
   /**
@@ -232,16 +228,16 @@ public class Account {
    *
    * @return a SQL Date object that represents the Account's date of creation.
    */
-  public Date getCreatedDate() {
-    return createdDate;
+  public String getCreated_date() {
+    return created_date;
   }
 
   /**
    * This method sets the Account object's created date variable according to the passed parameter.
    *
-   * @param createdDate a SQL date object.
+   * @param created_date a SQL date object.
    */
-  public void setCreatedDate(Date createdDate) {
-    this.createdDate = createdDate;
+  public void setCreated_date(String created_date) {
+    this.created_date = created_date;
   }
 }

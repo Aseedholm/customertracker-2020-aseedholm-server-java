@@ -46,4 +46,12 @@ public class CustomerService implements CustomerDao {
       return 0;
     }
   }
+
+  public Iterable<Customer> list() {
+    return customerRepository.findAll();
+  }
+
+  public Iterable<Customer> save(List<Customer> customers) {
+    return customerRepository.saveAll(customers);
+  }
 }
